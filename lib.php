@@ -3198,7 +3198,8 @@ function block_fn_marking_get_setting_courses () {
 
     if (empty($configcategory) && empty($configcourse)) {
 
-        $sql = "SELECT c.id FROM {course} c WHERE c.id <> ?";
+        $sql = "SELECT c.id FROM {course} c WHERE c.id <> ?
+            AND c.id IN (SELECT instanceid FROM {context} WHERE id IN (SELECT parentcontextid FROM {block_instances} WHERE blockname = 'fn_marking'))";
         if ($courses = $DB->get_records_sql($sql, array(SITEID))) {
             foreach ($courses as $subcatcourse) {
                 $filtercourses[] = $subcatcourse->id;
