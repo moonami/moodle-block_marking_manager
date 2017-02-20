@@ -3196,7 +3196,7 @@ function block_fn_marking_get_setting_courses () {
     $configcategory = get_config('block_fn_marking', 'category');
     $configcourse = get_config('block_fn_marking', 'course');
 
-    if (empty($configcategory) && empty($configcategory)) {
+    if (empty($configcategory) && empty($configcourse)) {
 
         $sql = "SELECT c.id FROM {course} c WHERE c.id <> ?";
         if ($courses = $DB->get_records_sql($sql, array(SITEID))) {
